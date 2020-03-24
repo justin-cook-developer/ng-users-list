@@ -1,0 +1,54 @@
+<section class="section">
+  <h2 class="subtitle has-text-centered">Create a User</h2>
+  <form (submit)="onSubmit($event)">
+    <div class="field">
+      <label class="label">First Name</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          [value]="firstName"
+          (input)="firstName = $event.target.value"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Last Name</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          [value]="lastName"
+          (input)="lastName = $event.target.value"
+        />
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Age</label>
+      <div class="control">
+        <input
+          class="input"
+          type="text"
+          [value]="age"
+          (input)="onAgeChange($event.target.value)"
+        />
+      </div>
+      <p class="help is-danger" *ngIf="ageError.length">{{ ageError }}</p>
+    </div>
+
+    <div id="buttons">
+      <div class="field is-grouped">
+        <div class="control">
+          <button type="submit" class="button is-success">Submit</button>
+        </div>
+        <div class="control">
+          <button type="reset" class="button is-danger" (click)="clear()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+</section>
