@@ -2,7 +2,7 @@
   <h2 class="subtitle has-text-centered">Create a User</h2>
   <form (submit)="onSubmit($event)">
     <div class="field">
-      <label class="label">First Name</label>
+      <label class="label">First Name (Required)</label>
       <div class="control">
         <input
           class="input"
@@ -11,10 +11,13 @@
           (input)="firstName = $event.target.value"
         />
       </div>
+      <p class="help is-danger" *ngIf="firstNameError.length">
+        {{ firstNameError }}
+      </p>
     </div>
 
     <div class="field">
-      <label class="label">Last Name</label>
+      <label class="label">Last Name (Required)</label>
       <div class="control">
         <input
           class="input"
@@ -23,10 +26,13 @@
           (input)="lastName = $event.target.value"
         />
       </div>
+      <p class="help is-danger" *ngIf="lastNameError.length">
+        {{ lastNameError }}
+      </p>
     </div>
 
     <div class="field">
-      <label class="label">Age</label>
+      <label class="label">Age (Required)</label>
       <div class="control">
         <input
           class="input"
