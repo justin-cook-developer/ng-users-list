@@ -12,8 +12,6 @@ export class CreateUserComponent {
   private _lastName = "";
   private _age = "";
 
-  private _firstNameError = "";
-  private _lastNameError = "";
   private _ageError = "";
 
   public get firstName(): string {
@@ -40,22 +38,6 @@ export class CreateUserComponent {
     this._age = age;
   }
 
-  public get firstNameError(): string {
-    return this._firstNameError;
-  }
-
-  public set firstNameError(firstNameError: string) {
-    this._firstNameError = firstNameError;
-  }
-
-  public get lastNameError(): string {
-    return this._lastNameError;
-  }
-
-  public set lastNameError(lastNameError: string) {
-    this._lastNameError = lastNameError;
-  }
-
   public get ageError(): string {
     return this._ageError;
   }
@@ -77,39 +59,26 @@ export class CreateUserComponent {
     this.age = age;
   }
 
+  public disableSubmit(): boolean {
+    return (
+      this.firstName.length === 0 ||
+      this.lastName.length === 0 ||
+      this.age.length === 0 ||
+      this.ageError.length !== 0
+    );
+  }
+
   public clear(): void {
     this.firstName = "";
     this.lastName = "";
     this.age = "";
-    this.firstNameError = "";
-    this.lastNameError = "";
     this.ageError = "";
   }
 
   public onSubmit(ev: Event): void {
     ev.preventDefault();
 
-    this.validateAge(this.age);
-
-    if (this.firstName.length === 0) {
-      this.firstNameError = "First Name is required.";
-    } else {
-      this.firstNameError = "";
-    }
-
-    if (this.lastName.length === 0) {
-      this.lastNameError = "Last Name is required.";
-    } else {
-      this.lastNameError = "";
-    }
-
-    if (
-      this.ageError.length === 0 &&
-      this.firstNameError.length === 0 &&
-      this.lastNameError.length === 0
-    ) {
-      this.addUser(this.firstName, this.lastName, parseInt(this.age, 10));
-      this.clear();
-    }
+    this.addUser(this.firstName, this.lastName, parseInt(this.age, 10));
+    this.clear();
   }
 }
